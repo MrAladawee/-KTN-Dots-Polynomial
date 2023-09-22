@@ -1,10 +1,8 @@
-import java.security.KeyStore.TrustedCertificateEntry
-
 //package ency.dots
 
 /*
 Класс Точек хранит:
-1. Координаты по OX, OY
+1. Координаты по OX, OY (сделано)
 
 Методы:
 1. Перемещение по OX (сделано)
@@ -45,7 +43,6 @@ class Dots(var x : Double = 0.0, var y : Double = 0.0) {
     }
 
     operator fun plus(other: Dots) = Dots(x + other.x, y + other.y)
-
     operator fun times(other: Dots) = Dots(x * other.x, y * other.y)
     operator fun times(multiply: Double) = Dots(x * multiply, y * multiply)
 

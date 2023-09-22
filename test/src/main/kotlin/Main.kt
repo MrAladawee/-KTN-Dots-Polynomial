@@ -1,7 +1,7 @@
-
-
 fun main() {
 
+    /*
+    СКРЫВАЕТСЯ ТЕСТОВАЯ ЧАСТЬ КЛАССОВ
 
     /* проверка класса точек */
 
@@ -77,8 +77,10 @@ fun main() {
     println("````````")
     println("````````")
 
+
     var ArrayTest1 : Array<Double> = arrayOf(3.0,4.0,6.0)
     var ArrayTest2 : Array<Double> = arrayOf(3.0,4.0,0.0)
+
 
     // Степень равна размеру и последний элемент не нуль
     var poly7 = Polynomial(2, ArrayTest1)
@@ -96,11 +98,13 @@ fun main() {
     poly8.view()
     println()
 
+
     // ОШИБКА ТУТ
     // Степень меньше размера и последний элемент не нуль
     var poly9 = Polynomial(1, ArrayTest1)
     println("NOW Степень  poly9: ${poly9.deg}")
-    poly9.view() ; poly9.reconstructer()
+    poly9.view()
+    poly9.reconstructer()
     println("AFT Степень  poly9: ${poly9.deg}")
     poly9.view()
     println()
@@ -109,10 +113,12 @@ fun main() {
     // Степень меньше размера и последний элемент нуль
     var poly10 = Polynomial(1, ArrayTest2)
     println("NOW Степень  poly10: ${poly10.deg}")
-    poly10.view() ; poly10.reconstructer()
+    poly10.view()
+    poly10.reconstructer()
     println("AFT Степень  poly10: ${poly10.deg}")
     poly10.view()
     println()
+
 
     // Степень больше размера и последний элемент не нуль
     var poly11 = Polynomial(4, ArrayTest1)
@@ -130,6 +136,7 @@ fun main() {
     poly12.view()
     println()
 
+
     /*
 
     for (elem in ArrayTest1.copyOfRange(0, ArrayTest1.lastIndex)) {
@@ -143,6 +150,23 @@ fun main() {
     for (i in ArrayTest3) {
         print("${i} ")
     }
+    */
+
+    СКРЫВАЕТСЯ ТЕКСТОВАЯ ЧАСТЬ КЛАССОВ
+    */
+
+    /* СКРЫВАЕТСЯ ТЕСТОВАЯ ЧАСТЬ ДЕЙСТВИЙ НАД ПОЛИНОМАМИ (+, *)
+    var ArrayCoefTest1 = arrayOf(1.0, 2.0, 3.0)
+    var ArrayCoefTest2 = arrayOf(9.0, 8.0, 7.0, 6.0)
+
+    var poly1 = Polynomial(2, ArrayCoefTest1)
+    var poly2 = Polynomial(3, ArrayCoefTest2)
+
+    (poly1 + poly2).view()
+    println()
+    poly1.view()
+    (poly1 * 4.0).view()
+    СКРЫВАЕТСЯ ТЕСТОВАЯ ЧАСТЬ ДЕЙСТВИЙ НАД ПОЛИНОМАМИ (+, *)
     */
 
 }

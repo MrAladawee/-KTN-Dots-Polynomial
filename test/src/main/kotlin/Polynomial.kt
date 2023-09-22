@@ -1,3 +1,5 @@
+import kotlin.math.*
+
 //package ency.polynomial
 
 /*
@@ -7,16 +9,16 @@
 
 Методы:
 1. Получение степени полинома (get запрос)
-2. Получение коэф. при i'й  степени (сделано)
+2. Получение коэф. при i'й степени (сделано)
 3. Задание коэф при i'й степени (сделано)
-4. Оператор сложения двух полиномов
-5. Умножение полинома на константу
+4. Оператор сложения двух полиномов (сделано)
+5. Умножение полинома на константу (сделано)
 6. Корректировка полинома - переопределение степени полинома (проверка на нулевой коэф.при старшой степени) (сделано)
+7. Вывод полинома (сделано)
 
 Конструкторы:
-1. Создаем полином нулевой степени с коэф.при нулевой степени равным нулю
-2. Полноценный полином: задается степень, коэффициенты -> степенью полинома является номер ненулевого коэф-а (n-1)
-(наверное можно объединить конструктор в один с дефолтными параметрами)
+1. Создаем полином нулевой степени с коэф.при нулевой степени равным нулю (нужно ли?)
+2. Полноценный полином: задается степень, коэффициенты -> степенью полинома является номер ненулевого коэф-а (n-1) (сделано)
  */
 
 class Polynomial(var deg: Int = 0, var arrayCoef : Array<Double> = arrayOf(0.0)) {
@@ -24,7 +26,7 @@ class Polynomial(var deg: Int = 0, var arrayCoef : Array<Double> = arrayOf(0.0))
     fun view() {
 
         if (deg == 0) println(arrayCoef[0])
-        else {
+        else if (deg + 1 == arrayCoef.size){
 
             var viewString = "" // результирующая строка
             var degTemp = deg
@@ -51,6 +53,10 @@ class Polynomial(var deg: Int = 0, var arrayCoef : Array<Double> = arrayOf(0.0))
 
         }
 
+        else if (deg + 1 != arrayCoef.size) {
+            reconstructer()
+            view()
+        }
         // Пусть Полином не имеет "огрехов" в степени.
 
     }
@@ -58,7 +64,6 @@ class Polynomial(var deg: Int = 0, var arrayCoef : Array<Double> = arrayOf(0.0))
     fun getCoef(deg_i: Int) : Double {
         return arrayCoef[deg_i]
     }
-
     fun editCoef(deg_i : Int, newCoef: Double) {
         arrayCoef[deg_i] = newCoef
     }
@@ -88,9 +93,9 @@ class Polynomial(var deg: Int = 0, var arrayCoef : Array<Double> = arrayOf(0.0))
 
         // Степень меньше размера и последний элемент не нуль
         else if ((_deg + 1 < _arrayCoef.size)
-            && (_arrayCoef.last() == 0.0)) {
+            && (_arrayCoef.last() != 0.0)) {
 
-            this.deg = _arrayCoef.size
+            this.deg = _arrayCoef.size - 1
             return true
 
         }
@@ -133,10 +138,35 @@ class Polynomial(var deg: Int = 0, var arrayCoef : Array<Double> = arrayOf(0.0))
 
     }
 
-    operator fun plus (other: Polynomial) {
+    operator fun plus (other: Polynomial) : Polynomial {
 
+        var arrayResult : Array<Double> = Array<Double>(max(this.arrayCoef.size, other.arrayCoef.size)) {0.0} // {0.0, 0.0, ..., 0.0}
 
+        for (i in 0..min(this.deg, other.deg)) {
+            arrayResult[i] = this.arrayCoef[i] + other.arrayCoef[i]
+        }
+
+        for (i in min(this.deg, other.deg) + 1..max(this.deg, other.deg)) {
+            if (this.deg > other.deg) {
+                arrayResult[i] = this.arrayCoef[i]
+            }
+            else {
+                arrayResult[i] = other.arrayCoef[i]
+            }
+        }
+
+        return Polynomial(max(this.deg, other.deg), arrayResult)
 
     }
+    operator fun times(multiply: Double) : Polynomial {
+
+        for (i in 0..this.arrayCoef.size-1) {
+            this.arrayCoef[i] = arrayCoef[i] * multiply
+        }
+
+        return Polynomial(this.deg, this.arrayCoef)
+
+    }
+
 
 }
