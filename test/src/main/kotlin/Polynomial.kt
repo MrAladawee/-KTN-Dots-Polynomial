@@ -15,6 +15,7 @@ import kotlin.math.*
 5. Умножение полинома на константу (сделано)
 6. Корректировка полинома - переопределение степени полинома (проверка на нулевой коэф.при старшой степени) (сделано)
 7. Вывод полинома (сделано)
+8. Получение значения при подстановке в полином (сделано)
 
 Конструкторы:
 1. Создаем полином нулевой степени с коэф.при нулевой степени равным нулю (нужно ли?)
@@ -140,9 +141,10 @@ class Polynomial(var deg: Int = 0, var arrayCoef : Array<Double> = arrayOf(0.0))
 
     fun getValue(point: Double) : Double {
 
+        var tempDeg : Double = 0.0
         var result : Double = 0.0
         for (coef in arrayCoef) {
-            result += coef * point
+            result += coef * (Math.pow(point,tempDeg)) ; tempDeg++
         }
 
         return result
