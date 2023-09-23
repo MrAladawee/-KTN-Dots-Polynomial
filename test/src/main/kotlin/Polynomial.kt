@@ -138,6 +138,17 @@ class Polynomial(var deg: Int = 0, var arrayCoef : Array<Double> = arrayOf(0.0))
 
     }
 
+    fun getValue(point: Double) : Double {
+
+        var result : Double = 0.0
+        for (coef in arrayCoef) {
+            result += coef * point
+        }
+
+        return result
+
+    }
+
     operator fun plus (other: Polynomial) : Polynomial {
 
         var arrayResult : Array<Double> = Array<Double>(max(this.arrayCoef.size, other.arrayCoef.size)) {0.0} // {0.0, 0.0, ..., 0.0}
@@ -167,6 +178,5 @@ class Polynomial(var deg: Int = 0, var arrayCoef : Array<Double> = arrayOf(0.0))
         return Polynomial(this.deg, this.arrayCoef)
 
     }
-
 
 }
